@@ -1,0 +1,45 @@
+﻿# Node modules (React)
+Vistas_React/node_modules/
+Vistas_React/dist/
+Vistas_React/.env
+Vistas_React/.env.local
+
+# Java/Maven
+Migracion_Java/target/
+Migracion_Java/.mvn/
+Migracion_Java/mvnw
+Migracion_Java/mvnw.cmd
+*.class
+*.jar
+*.war
+
+# Python
+Analitica_Python/__pycache__/
+Analitica_Python/*.pyc
+Analitica_Python/.env
+Analitica_Python/venv/
+
+# Docker volumes
+Migracion_Java/mysql-data/
+Migracion_Java/postgres-data/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Configuraciones sensibles
+*.env
+.env.local
+.env.production

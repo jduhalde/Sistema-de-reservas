@@ -1,0 +1,68 @@
+services:
+  reservas-mysql:
+    image: mysql:8.0.34
+    container_name: reservas-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: reservas_db
+      MYSQL_USER: reservas_user
+      MYSQL_PASSWORD: reservas123
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres-analytics:
+    image: postgres:15
+    container_name: postgres-analytics
+    environment:
+      POSTGRES_DB: analytics_db
+      POSTGRES_USER: analytics_user
+      POSTGRES_PASSWORD: analytics123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U analytics_user -d analytics_db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  reservas-app:
+    build: .
+    container_name: reservas-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      reservas-mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://reservas-mysql:3306/reservas_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=reservas_user
+      - SPRING_DATASOURCE_PASSWORD=reservas123
+
+  analitica-app:
+    build:
+      context: ../Analitica_Python
+    container_name: analitica-app
+    ports:
+      - "8000:8000"
+    depends_on:
+      reservas-app:
+        condition: service_started
+      postgres-analytics:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://analytics_user:analytics123@postgres-analytics:5432/analytics_db
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  mysql-data:
+  postgres-data:

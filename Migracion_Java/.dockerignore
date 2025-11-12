@@ -1,0 +1,15 @@
+Ignorar el CONTENIDO de la carpeta target
+
+target/*
+
+¡PERO NO ignorar el .jar que SÍ necesitamos!
+
+!target/gestion-reservas-1.0.0.jar
+
+Ignorar otras cosas de Maven/IDE
+
+.mvn/
+mvnw
+mvnw.cmd
+.idea/
+*.iml

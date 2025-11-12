@@ -97,16 +97,10 @@ mvn test
 
   React Frontend 
    (Puerto 5173) 
-
-         
-    
-             
  
  Spring   FastAPI 
   Boot    Python  
-  (8080)  (8000)  
- 
-             
+  (8080)  (8000)               
  
  MySQL   PostgreSQL 
  (3307)    (5432)   
@@ -127,15 +121,18 @@ Proyecto académico desarrollado para la materia Programación de Vanguardia.
 
 ##  Licencia
 
-Proyecto académico - Universidad de Buenos Aires (UBA) - 2025
+Proyecto académico - Uso libre
 
 ##  Autores
 
-- Juan Duhalde
-- [Otros integrantes del equipo]
+Katherine Monduela
+Julio Duhalde
+Silvina Perez Heredia
+Gustavo Fernández
+Guido Rearte
 
 ##  Institución
 
-Universidad de Buenos Aires
-Facultad de Ingeniería
+Universidad de la ciudad de Buenos Aires
+Licenciatura en tecnologías digitales
 Programación de Vanguardia - 2025
